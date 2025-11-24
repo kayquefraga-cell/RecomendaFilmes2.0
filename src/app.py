@@ -12,17 +12,17 @@ def pesquisa_filme():
     dados = request.get_json()
 
     db = TinyDB('baseDadosFilmes.json')
-    filmes = db.table('filmes')
+    Filmes = db.table('Filmes')
     
-    filmes.insert(dados)
+    Filmes.insert(dados)
 
-    todos = filmes.all()
+    todos = Filmes.all()
 
     filmes_query = dados.get('titulo', '')
     print(filmes_query)
     Filmes = Query()
 
-    resultado = db.search(Filmes.nome == filmes_query)
+    resultado = db.search(Filmes.nome == 'titulo')
     resposta = {
         "mensagem": "Pesquisa realizada",
         "titulo_pesquisado": dados,
@@ -30,7 +30,7 @@ def pesquisa_filme():
         "total_filmes": todos
     }
 
-    return jsonify(todos), 200
+    return jsonify(resposta), 200
 
 
 @app.route('/api/recomendarFilme', methods=['POST'])
