@@ -12,9 +12,6 @@ def pesquisa_filme():
     dados = request.get_json()
     titulo = dados.get("titulo")
 
-    if not titulo:
-        return {"erro": "O campo 'titulo' é obrigatório."}, 400
-
     db = TinyDB('baseDadosFilmes.json')
     filmes = db.table('filmes')
     Filmes = Query()
