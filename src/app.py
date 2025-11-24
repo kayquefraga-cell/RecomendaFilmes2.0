@@ -7,25 +7,30 @@ app = Flask(__name__)
 @app.route('/api/pesquisaFilme', methods=['POST'])
 def pesquisa_filme():
     if not request.is_json:
-        return {"erro": "Requisição deve ser em JSON"}, 400
+        return jsonify({"erro": "Requisição deve ser em JSON"}), 400
 
     dados = request.get_json()
-    titulo = dados.get("titulo")
 
     db = TinyDB('baseDadosFilmes.json')
     filmes = db.table('filmes')
+    
+    filmes.insert(dados)
+
+    todos = filmes.all()
+
+    filmes_query = dados.get('titulo', '')
+    print(filmes_query)
     Filmes = Query()
 
-    resultado = filmes.search(Filmes.titulo == titulo)
-
+    resultado = db.search(Filmes.nome == filmes_query)
     resposta = {
         "mensagem": "Pesquisa realizada",
-        "titulo_pesquisado": titulo,
+        "titulo_pesquisado": dados,
         "filme_encontrado": resultado,
-        "total_filmes": filmes.all()
+        "total_filmes": todos
     }
 
-    return jsonify(resposta), 200
+    return jsonify(todos), 200
 
 
 @app.route('/api/recomendarFilme', methods=['POST'])
