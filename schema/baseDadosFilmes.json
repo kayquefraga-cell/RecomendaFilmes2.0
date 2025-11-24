@@ -1,25 +1,25 @@
 {
-    "Filmes": [
-        {
+    "Filmes": {
+       "1": {
             "id": 1,
             "titulo": "Inception",
             "diretor": "Christopher Nolan",
             "ano_lancamento": 2010,
             "genero": "Sci-Fi"
         },
-        {
+        "2": {
             "id": 2,
             "titulo": "The Godfather",
             "diretor": "Francis Ford Coppola",
             "ano_lancamento": 1972,
             "genero": "Crime"
         },
-        {
+        "3": {
             "id": 3,
             "titulo": "Pulp Fiction",
             "diretor": "Quentin Tarantino",
             "ano_lancamento": 1994,
             "genero": "Crime"
         }
-    ]
+    }
 }
