@@ -16,18 +16,18 @@ def pesquisa_filme():
     
     Filmes.insert(dados)
 
-    todos = Filmes.all()
+   # todos = Filmes.all()
 
-    filmes_query = dados.get('titulo', '')
+    filmes_query = dados.get('filme', '')
     print(filmes_query)
     Filmes = Query()
 
-    resultado = db.search(Filmes.nome == 'titulo')
+    resultado = db.search(Filmes.nome == filmes_query)
     resposta = {
         "mensagem": "Pesquisa realizada",
         "titulo_pesquisado": dados,
         "filme_encontrado": resultado,
-        "total_filmes": todos
+       # "total_filmes": todos
     }
 
     return jsonify(resposta), 200
